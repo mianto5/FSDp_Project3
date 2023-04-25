@@ -1,10 +1,13 @@
+<%@page import="com.SportyShoes.entity.Product"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home Page</title>
+<title>Products</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -63,13 +66,33 @@
 			</div>
 		</div>
 	</nav>
-	<h1>Welcome on Sporty Shoes administrative portal</h1>
-	<%
-		if (id == null) {
-		%>
-		<h5>Please log in to make any changes</h5>
-		<%
-		}
-		%>
+	<div align="center" class="container">
+		<h5>Products</h5>
+	</div>
+	<div align="center">
+        <table class="table" border="1" cellpadding="5">
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Sport</th>
+                <th>Sex</th>
+                <th>Price</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <c:forEach var="product" items="${requestScope.productList }">
+				<tr>
+					<td>${ product.pid}</td>
+					<td>${ product.name}</td>
+					<td>${ product.sport}</td>
+					<td>${ product.sex}</td>
+					<td>${ product.price}</td>
+					<td><a href="editProduct?pid=${ product.pid}">Edit</a> </td>
+					<td><a href="delete?pid=${ product.pid}">Delete</a> </td>
+				</tr>
+			</c:forEach>
+        </table>
+    </div>
+	
 </body>
 </html>
