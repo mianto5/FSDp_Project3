@@ -32,14 +32,12 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int pid, String name, int price, String sport, String sex, List<PurchasedItems> items) {
+	public Product(String name, int price, String sport, String sex) {
 		super();
-		this.pid = pid;
 		this.name = name;
 		this.price = price;
 		this.sport = sport;
 		this.sex = sex;
-		this.items = items;
 	}
 
 	public int getPid() {

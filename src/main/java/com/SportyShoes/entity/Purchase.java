@@ -22,6 +22,7 @@ public class Purchase {
 	private String pcemail;
 	private LocalDate pcdate;
 	private int totalprice;
+	private String status;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pcid")	
@@ -32,13 +33,14 @@ public class Purchase {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Purchase(int pcid, String email, LocalDate pcdate, List<PurchasedItems> items, int totalprice) {
+	public Purchase(int pcid, String email, LocalDate pcdate, List<PurchasedItems> items, int totalprice, String status) {
 		super();
 		this.pcid = pcid;
 		this.pcemail = email;
 		this.pcdate = pcdate;
 		this.items = items;
 		this.totalprice = totalprice;
+		this.status = status;
 	}
 	
 	public int getPcid() {
@@ -79,6 +81,14 @@ public class Purchase {
 	
 	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

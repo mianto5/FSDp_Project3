@@ -31,5 +31,8 @@ public class ProductService {
 		return products;
 	}
 
+	public Product insertProduct(Product p) throws Exception {
+		return this.productRepo.save(p);
+	}
 
 }

@@ -71,8 +71,37 @@
 		<%
 		} else if (id.equals("admin")) {
 		%>
-		<h1>Hello admin!</h1>
-		<h5>In case you want to change your password, fill this form:</h5>
+		<h1>Hello admin!</h1><br>
+		<h5>In case you want to change your password, fill this form:</h5><br>
+		<div class="container">
+		<%
+		String message = (String) request.getAttribute("message");
+		if(message !=  null){%>
+		<div class="mesagge"><%= message %></div>
+		<%} %>
+		<form action="index" method="post">
+
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
+					<div class="form-group">
+						<label for="old">Old Password*: </label> <input type="password"
+							class="form-control" id="old" name="old">
+					</div>
+					<div class="form-group">
+						<label for="new1">New Password*: </label> <input type="password"
+							class="form-control" id="new1" name="new1">
+					</div>
+					<div class="form-group">
+						<label for="new2">New Password Again*: </label> <input type="password"
+							class="form-control" id="new2" name="new2">
+					</div>
+					<div>
+						<br><input type="submit" class="btn btn-primary" value="Change password" />
+					</div>
+				</div>
+			</div>
+		</form>
+		</div>
 		<%
 		}
 		%>

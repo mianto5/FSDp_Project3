@@ -25,6 +25,19 @@ public class AdminLoginService {
 	
 	// validate login
 	
-	// change password
+	
+	public String changePassword(String old, String new1, String new2) {
+		String oldDB = getAdminLoginByUsername("admin").getPassword();
+		if(old.isBlank() || new1.isBlank() || new2.isBlank())
+			return "No box should stay empty.";
+		if(!new1.equals(new2))
+			return "New passwords are not the same.";
+		if(!old.equals(oldDB))
+			return "Old password is incorrect.";
+		else {
+			updateAdminLogin(new AdminLogin("admin", new1));
+			return "Password changed successfully.";
+		}
+	}
 
 }

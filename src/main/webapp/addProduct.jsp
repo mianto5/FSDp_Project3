@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Products</title>
+<title>Add New</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -67,33 +67,51 @@
 		</div>
 	</nav>
 	<div align="center" class="container">
-		<h5>Products</h5>
+		<h5>Add a new product</h5>
 	</div>
-	<a class="nav-link" href="addProduct">ADD A NEW PRODUCT</a><br>
-	<div align="center">
-        <table class="table" border="1" cellpadding="5">
-            <tr>
-                <th>Product ID</th>
-                <th>Product Name</th>
-                <th>Sport</th>
-                <th>Sex</th>
-                <th>Price</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <c:forEach var="product" items="${requestScope.productList }">
-				<tr>
-					<td>${ product.pid}</td>
-					<td>${ product.name}</td>
-					<td>${ product.sport}</td>
-					<td>${ product.sex}</td>
-					<td>${ product.price}</td>
-					<td><a href="editProduct?pid=${ product.pid}">Edit</a> </td>
-					<td><a href="delete?pid=${ product.pid}">Delete</a> </td>
-				</tr>
-			</c:forEach>
-        </table>
-    </div>
+	<div class="container">
+		<%
+		String message = (String) request.getAttribute("message");
+		if(message !=  null){%>
+			<div class="mesagge"><%= message %></div>
+		<%} %>
+		<form action="addProduct" method="post">
+
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
+					<div class="form-group">
+						<label for="name">Product Name*: </label> <input type="text"
+							class="form-control" id="name" name="name">
+					</div>
+					<div class="form-group">
+						<label for="price">Price*: </label> <input type="number"
+							class="form-control" id="price" name="price">
+					</div>
+					<div class="form-group">
+						<label for="sport">Sport Category: </label> 
+						<select class="form-control" id="sport" name="sport">
+							<option value=""> </option>
+							<option value="dancing">dancing</option>
+							<option value="hiking">hiking</option>
+							<option value="running">running</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="sex">Sex Category: </label> 
+						<select class="form-control" id="sex" name="sex">
+							<option value=""> </option>
+							<option value="female">female</option>
+							<option value="male">male</option>
+							<option value="unisex">unisex</option>
+						</select>
+					</div>
+					<div>
+						<br><input type="submit" class="btn btn-primary" value="Add" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 	
 </body>
 </html>

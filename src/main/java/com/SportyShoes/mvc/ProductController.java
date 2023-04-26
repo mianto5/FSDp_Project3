@@ -1,10 +1,12 @@
 package com.SportyShoes.mvc;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.SportyShoes.entity.Product;
@@ -23,11 +25,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products")
-	public String listProducts(HttpServletRequest request) {
+	public String listProducts(Map<String, List<Product>> map) {
 		System.out.println("products page");
 		
 		List<Product> productList = productService.getAllProducts();
-		request.setAttribute("productList", productList);
+		map.put("productList", productList);
 		
 		for(Product p: productList) {
 			System.out.println(p.getPid());
@@ -37,5 +39,27 @@ public class ProductController {
 		return "products";
 	}
 	
+	@GetMapping("/addProduct")
+	public String addProductGet() {
+		return "addProduct";
+	}
+	
+	@PostMapping("/addProduct")
+	public String addProductPost(HttpServletRequest request) {
+		String name = request.getParameter("name");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String sport = request.getParameter("sport");
+		String sex = request.getParameter("sex");
+		
+		Product p = new Product(name, price, sport, sex);
+		try {
+			productService.insertProduct(p);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:products";
+	}
 
 }
