@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -75,19 +76,19 @@
             <tr>
                 <th>Product ID</th>
                 <th>Product Name</th>
+                <th>Price</th>
                 <th>Sport</th>
                 <th>Sex</th>
-                <th>Price</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <c:forEach var="product" items="${requestScope.productList }">
+            <c:forEach items="${productList}" var="product">
 				<tr>
-					<td>${ product.pid}</td>
-					<td>${ product.name}</td>
-					<td>${ product.sport}</td>
-					<td>${ product.sex}</td>
-					<td>${ product.price}</td>
+					<td>${product.pid}</td>
+					<td>${product.name}</td>
+					<td>${product.price}</td>
+					<td>${product.sport}</td>
+					<td>${product.sex}</td>
 					<td><a href="editProduct?pid=${ product.pid}">Edit</a> </td>
 					<td><a href="delete?pid=${ product.pid}">Delete</a> </td>
 				</tr>

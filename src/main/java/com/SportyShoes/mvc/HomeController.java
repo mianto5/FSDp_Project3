@@ -2,6 +2,7 @@ package com.SportyShoes.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -27,13 +28,13 @@ public class HomeController {
 	}
 	
 	@PostMapping("/index")
-	public String changePassword(HttpServletRequest request, HttpSession session){
+	public String changePassword(HttpServletRequest request, Model model){
 		String old = request.getParameter("old");
 		String new1 = request.getParameter("new1");
 		String new2 = request.getParameter("new2");
 		
 		String message = adminService.changePassword(old, new1, new2);
-		session.setAttribute("message", message);
+		model.addAttribute("message", message);
 		
 		System.out.println("index page POST");
 		System.out.println(message);

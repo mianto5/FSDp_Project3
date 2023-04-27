@@ -77,7 +77,7 @@
 		<%
 		String message = (String) request.getAttribute("message");
 		if(message !=  null){%>
-		<div class="mesagge"><%= message %></div>
+		<div class="mesagge"><%= message %></div><br>
 		<%} %>
 		<form action="index" method="post">
 

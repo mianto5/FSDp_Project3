@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,11 +26,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products")
-	public String listProducts(Map<String, List<Product>> map) {
+	public String listProducts(Model model) {
 		System.out.println("products page");
 		
 		List<Product> productList = productService.getAllProducts();
-		map.put("productList", productList);
+		model.addAttribute("productList", productList);
 		
 		for(Product p: productList) {
 			System.out.println(p.getPid());
