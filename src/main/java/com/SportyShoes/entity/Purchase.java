@@ -33,10 +33,10 @@ public class Purchase {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Purchase(int pcid, String email, LocalDate pcdate, List<PurchasedItems> items, int totalprice, String status) {
+	public Purchase(int pcid, String pcemail, LocalDate pcdate, List<PurchasedItems> items, int totalprice, String status) {
 		super();
 		this.pcid = pcid;
-		this.pcemail = email;
+		this.pcemail = pcemail;
 		this.pcdate = pcdate;
 		this.items = items;
 		this.totalprice = totalprice;
@@ -51,12 +51,12 @@ public class Purchase {
 		this.pcid = pcid;
 	}
 	
-	public String getEmail() {
+	public String getPcemail() {
 		return pcemail;
 	}
 	
-	public void setEmail(String email) {
-		this.pcemail = email;
+	public void setPcemail(String pcemail) {
+		this.pcemail = pcemail;
 	}
 	
 	public LocalDate getPcdate() {

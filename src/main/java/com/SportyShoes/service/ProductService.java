@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.SportyShoes.entity.Product;
 import com.SportyShoes.repo.ProductRepo;
 
-import jakarta.persistence.EntityNotFoundException;
-
 @Service
 public class ProductService {
 	

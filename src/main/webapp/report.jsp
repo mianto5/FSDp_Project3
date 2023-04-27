@@ -1,10 +1,14 @@
+<%@page import="com.SportyShoes.entity.Product"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home Page</title>
+<title>Purchases</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -63,13 +67,36 @@
 			</div>
 		</div>
 	</nav>
-	<h1>Welcome on Sporty Shoes administrative portal</h1>
-	<%
-		if (id == null) {
-		%>
-		<h5>Please log in to make any changes</h5>
-		<%
-		}
-		%>
+	<div align="center" class="container">
+		<h5>Purchase Report</h5>
+	</div>
+	<br>
+	<div align="center">
+        <table class="table" border="1" cellpadding="5">
+            <tr>
+                <th>Purchase ID</th>
+                <th>Purchase Date</th>
+                <th>Purchase Status</th>
+                <th>User ID</th>
+                <th>Products Purchased IDs</th>
+                <th>Total Price</th>
+            </tr>
+            <c:forEach items="${purchaseList}" var="purchase">
+				<tr>
+					<td>${purchase.pcid}</td>
+					<td>${purchase.pcdate}</td>
+					<td>${purchase.status}</td>
+					<td>${purchase.pcemail}</td>
+					<td>
+						<c:forEach items="${purchase.items}" var="item">
+							${item.pid}<br>
+						</c:forEach>
+					</td>
+					<td>${purchase.totalprice}</td>
+				</tr>
+			</c:forEach>
+        </table>
+    </div>
+	
 </body>
 </html>
