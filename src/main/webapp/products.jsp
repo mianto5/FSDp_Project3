@@ -90,7 +90,7 @@
 					<td>${product.sport}</td>
 					<td>${product.sex}</td>
 					<td><a href="editProduct?pid=${ product.pid}">Edit</a> </td>
-					<td><a href="delete?pid=${ product.pid}">Delete</a> </td>
+					<td><a href="deleteProduct?pid=${ product.pid}">Delete</a> </td>
 				</tr>
 			</c:forEach>
         </table>

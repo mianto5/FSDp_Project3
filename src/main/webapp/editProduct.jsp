@@ -1,10 +1,13 @@
+<%@page import="com.SportyShoes.entity.Product"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home Page</title>
+<title>Edit</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -63,13 +66,56 @@
 			</div>
 		</div>
 	</nav>
-	<h1>Welcome on Sporty Shoes administrative portal</h1>
-	<%
-		if (id == null) {
-		%>
-		<h5>Please log in to make any changes</h5>
+	<div align="center" class="container">
+		<h5>Edit an existing product</h5>
+	</div>
+	<div class="container">
 		<%
-		}
-		%>
+		String message = (String) request.getAttribute("message");
+		if(message !=  null){%>
+			<div class="mesagge"><%= message %></div>
+		<%} %>
+		<form action="editProduct" method="post">
+
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
+					<div class="form-group">
+						<label for="name">Product ID*: </label> <input type="text" readonly="readonly"
+							class="form-control" value="${product.pid}" id="pid" name="pid">
+					</div>
+					<div class="form-group">
+						<label for="name">Product Name*: </label> <input type="text" readonly="readonly"
+							class="form-control" value="${product.name}" id="name" name="name">
+					</div>
+					<div class="form-group">
+						<label for="price">Price*: </label> <input type="number"
+							class="form-control" value="${product.price}" id="price" name="price">
+					</div>
+					<div class="form-group">
+						<label for="sport">Sport Category: </label> 
+						<select class="form-control" id="sport" name="sport">
+							<option value=""> </option>
+							<option value="dancing">dancing</option>
+							<option value="hiking">hiking</option>
+							<option value="running">running</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="sex">Sex Category: </label> 
+						<select class="form-control" id="sex" name="sex">
+							<option value=""> </option>
+							<option value="female">female</option>
+							<option value="male">male</option>
+							<option value="unisex">unisex</option>
+						</select>
+					</div>
+					<div>
+						<br><input type="submit" class="btn btn-primary" value="Edit" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	
 </body>
 </html>

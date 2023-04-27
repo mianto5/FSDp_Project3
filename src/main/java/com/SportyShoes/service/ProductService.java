@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.SportyShoes.entity.Product;
 import com.SportyShoes.repo.ProductRepo;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class ProductService {
 	
@@ -31,6 +33,18 @@ public class ProductService {
 
 	public Product insertProduct(Product p) throws Exception {
 		return this.productRepo.save(p);
+	}
+	
+	public Product updateProduct(Product p) throws Exception {
+		return this.productRepo.save(p);
+	}
+	
+	public void deleteProductById(String pid) throws Exception {
+		this.productRepo.deleteById(pid);
+	}
+	
+	public Product getProductById(String pid) {
+		return this.productRepo.findById(pid).orElseThrow(()-> new EntityNotFoundException(pid+ " does not exist"));
 	}
 
 }

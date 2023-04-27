@@ -60,5 +60,47 @@ public class ProductController {
 		
 		return "redirect:products";
 	}
+	
+	@GetMapping("/deleteProduct")
+	public String deleteProductGet(HttpServletRequest request) {
+		String pid = request.getParameter("pid");
+		try {
+			productService.deleteProductById(pid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:products";
+	}
+	
+	@GetMapping("/editProduct")
+	public String editProductGet(HttpServletRequest request, Model model) {
+		String pid = request.getParameter("pid");
+		
+		Product p = productService.getProductById(pid);
+		model.addAttribute("product", p);
+		
+		return "editProduct";
+	}
+	
+	@PostMapping("/editProduct")
+	public String editProductPost(HttpServletRequest request) {
+		int pid = Integer.parseInt(request.getParameter("pid"));
+		String name = request.getParameter("name");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String sport = request.getParameter("sport");
+		String sex = request.getParameter("sex");
+		
+		Product p = new Product(name, price, sport, sex);
+		p.setPid(pid);
+		
+		try {
+			productService.updateProduct(p);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:products";
+	}
 
 }

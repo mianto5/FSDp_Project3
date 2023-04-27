@@ -64,6 +64,12 @@ public class HomeController {
 		return "login";
 	}
 	
-	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		System.out.println("logout page");
+		session.removeAttribute("id");
+		session.invalidate();
+		return "redirect:index";
+	}
 
 }
