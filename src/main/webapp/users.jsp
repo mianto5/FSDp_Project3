@@ -68,7 +68,19 @@
 		</div>
 	</nav>
 	<div align="center" class="container">
-		<h5>Users</h5>
+		<h5>Users</h5><br>
+		<form action="users" method="get">
+			<div class="form-group">
+				<input type="text" class="form-control" id="email" name="email" placeholder="Enter User's Email">
+			</div>
+			<input type="submit" class="btn btn-primary" value="Search by Email" />
+		</form><br>
+		<form action="users" method="get">
+			<div class="form-group">
+				<input type="text" class="form-control" id="lname" name="lname" placeholder="Enter User's Last Name">
+			</div>
+			<input type="submit" class="btn btn-primary" value="Search by Last Name" />
+		</form>
 	</div>
 	<br>
 	<div align="center">

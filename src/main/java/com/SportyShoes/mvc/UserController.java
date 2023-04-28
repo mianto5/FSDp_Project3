@@ -1,14 +1,19 @@
 package com.SportyShoes.mvc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.SportyShoes.dto.UserDTO;
+import com.SportyShoes.entity.Purchase;
 import com.SportyShoes.service.UserDTOService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class UserController {
@@ -21,16 +26,24 @@ public class UserController {
 	}
 	
 	@GetMapping("/users")
-	public String listUsers(Model model) {
+	public String listUsers(HttpServletRequest request, Model model) {
 		System.out.println("users page");
 		
-		List<UserDTO> userList = userService.getAllUserDTOs();
-		model.addAttribute("userList", userList);
+		String email = request.getParameter("email");
+		String lname = request.getParameter("lname");
+		System.out.println(email);
+		System.out.println(lname);
 		
-		for(UserDTO u: userList) {
-			System.out.println(u.getLname());
-			System.out.println(u.getPurchases());
-		}
+		List<UserDTO> userList = new ArrayList<UserDTO>();
+		
+		if(email==null && lname==null)
+			userList = userService.getAllUserDTOs();
+		else if (email!=null && lname==null)
+			userList.add(userService.getUserByEmail(email));
+		else if (email==null && lname!=null)
+			userList = userService.getUserByLname(lname);
+		
+		model.addAttribute("userList", userList);
 		
 		return "users";
 	}

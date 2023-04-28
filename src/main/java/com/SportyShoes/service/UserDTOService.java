@@ -28,5 +28,13 @@ public class UserDTOService {
 		});
 		return users;
 	}
+	
+	public UserDTO getUserByEmail(String email){
+		return this.userDTORepo.findByEmail(email);
+	}
+	
+	public List<UserDTO> getUserByLname(String lname){
+		return this.userDTORepo.findByLname(lname);
+	}
 
 }
