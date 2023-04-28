@@ -68,7 +68,7 @@
 		</div>
 	</nav>
 	<div align="center" class="container">
-		<h5>Purchase Report</h5>
+		<h5>Users</h5>
 	</div>
 	<br>
 	<div align="center">

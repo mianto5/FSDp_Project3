@@ -68,9 +68,18 @@
 		</div>
 	</nav>
 	<div align="center" class="container">
-		<h5>Purchase Report</h5>
-	</div>
-	<br>
+		<h5>Purchase Report</h5><br>
+		Filter by Purchase Date:
+		<a href="report?pcdate=today">Today</a>
+		<a href="report?pcdate=week">Last Week</a>
+		<a href="report?pcdate=month">Last Month</a>
+		<a href="report">All</a><br>
+		Filter by Purchase Status:
+		<a href="report?status=paid">Paid</a>
+		<a href="report?status=sent">Sent</a>
+		<a href="report?status=delivered">Delivered</a>
+		<a href="report">All</a>
+	</div><br>
 	<div align="center">
         <table class="table" border="1" cellpadding="5">
             <tr>

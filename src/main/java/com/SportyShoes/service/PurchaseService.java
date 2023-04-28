@@ -1,5 +1,6 @@
 package com.SportyShoes.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,22 @@ public class PurchaseService {
 			purchases.add(p);
 		});
 		return purchases;
+	}
+	
+	public List<Purchase> getPurchasesByStatus(String status){
+		return this.purchaseRepo.findByStatus(status);
+	}
+	
+	public List<Purchase> getPurchasesByDate(String pcdate){
+		LocalDate today = LocalDate.now();
+		if(pcdate.equals("today"))
+			return this.purchaseRepo.findByPcdate(today);
+		else if(pcdate.equals("week"))
+			return this.purchaseRepo.findByPcdateBetween(today.minusWeeks(1), today);
+		else if(pcdate.equals("month"))
+			return this.purchaseRepo.findByPcdateBetween(today.minusMonths(1), today);
+		else
+			return null;
 	}
 
 }

@@ -63,7 +63,6 @@
 			</div>
 		</div>
 	</nav>
-	<h1>Login Page</h1>
 	<div class="container">
 		<div>
 			<div class="wrapper fadeInDown">
