@@ -30,11 +30,6 @@ public class ProductController {
 		List<Product> productList = productService.getAllProducts();
 		model.addAttribute("productList", productList);
 		
-		for(Product p: productList) {
-			System.out.println(p.getPid());
-			System.out.println(p.getName());
-		}
-		
 		return "products";
 	}
 	
@@ -46,15 +41,18 @@ public class ProductController {
 	@PostMapping("/addProduct")
 	public String addProductPost(HttpServletRequest request) {
 		String name = request.getParameter("name");
-		int price = Integer.parseInt(request.getParameter("price"));
+		String price = request.getParameter("price");
 		String sport = request.getParameter("sport");
 		String sex = request.getParameter("sex");
 		
-		Product p = new Product(name, price, sport, sex);
+		if (name==null || name.isBlank() || price.isBlank()) {
+			return "redirect:addProduct";
+		}
+		
+		Product p = new Product(name, Integer.parseInt(price), sport, sex);
 		try {
 			productService.insertProduct(p);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -64,10 +62,10 @@ public class ProductController {
 	@GetMapping("/deleteProduct")
 	public String deleteProductGet(HttpServletRequest request) {
 		String pid = request.getParameter("pid");
+		System.out.println("Pid: "+pid);
 		try {
 			productService.deleteProductById(pid);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "redirect:products";
@@ -85,19 +83,19 @@ public class ProductController {
 	
 	@PostMapping("/editProduct")
 	public String editProductPost(HttpServletRequest request) {
-		int pid = Integer.parseInt(request.getParameter("pid"));
-		String name = request.getParameter("name");
+		String pid = request.getParameter("pid");
 		int price = Integer.parseInt(request.getParameter("price"));
 		String sport = request.getParameter("sport");
 		String sex = request.getParameter("sex");
 		
-		Product p = new Product(name, price, sport, sex);
-		p.setPid(pid);
+		Product p = productService.getProductById(pid);
+		p.setPrice(price);
+		p.setSport(sport);
+		p.setSex(sex);
 		
 		try {
 			productService.updateProduct(p);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "redirect:products";

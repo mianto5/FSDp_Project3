@@ -37,7 +37,6 @@ public class HomeController {
 		model.addAttribute("message", message);
 		
 		System.out.println("index page POST");
-		System.out.println(message);
 		
 		return "index";
 	}

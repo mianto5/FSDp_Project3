@@ -77,12 +77,6 @@
 							placeholder="Password" /> 
 						<input type="submit" class="fadeIn fourth" value="Log In" />
 					</form>
-					<%
-					String error = request.getParameter("error");
-					if(error !=  null){
-					%>
-					<div class="error"><%= error %></div>
-					<%} %>
 				</div>
 			</div>
 		</div>

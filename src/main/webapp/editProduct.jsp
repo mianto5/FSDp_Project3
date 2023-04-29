@@ -66,15 +66,18 @@
 			</div>
 		</div>
 	</nav>
+	<%
+	if (id == null) {
+	%>
+	<h1>Welcome on Sporty Shoes administrative portal</h1>
+	<h5>Please log in to make any changes</h5>
+	<%
+	} else if (id.equals("admin")) {
+	%>
 	<div align="center" class="container">
 		<h5>Edit an existing product</h5>
 	</div>
 	<div class="container">
-		<%
-		String message = (String) request.getAttribute("message");
-		if(message !=  null){%>
-			<div class="mesagge"><%= message %></div>
-		<%} %>
 		<form action="editProduct" method="post">
 
 			<div class="row">
@@ -116,6 +119,8 @@
 			</div>
 		</form>
 	</div>
-	
+	<%
+	}
+	%>
 </body>
 </html>

@@ -67,6 +67,14 @@
 			</div>
 		</div>
 	</nav>
+	<%
+	if (id == null) {
+	%>
+	<h1>Welcome on Sporty Shoes administrative portal</h1>
+	<h5>Please log in to make any changes</h5>
+	<%
+	} else if (id.equals("admin")) {
+	%>
 	<div align="center" class="container">
 		<h5>Purchase Report</h5><br>
 		Filter by Purchase Date:
@@ -106,6 +114,8 @@
 			</c:forEach>
         </table>
     </div>
-	
+	<%
+	}
+	%>
 </body>
 </html>

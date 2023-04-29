@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.SportyShoes.entity.Product;
 import com.SportyShoes.entity.Purchase;
 import com.SportyShoes.service.PurchaseService;
 
@@ -32,8 +29,6 @@ public class PurchaseController {
 		
 		String status = request.getParameter("status");
 		String pcdate = request.getParameter("pcdate");
-		System.out.println(status);
-		System.out.println(pcdate);
 		
 		List<Purchase> purchaseList = new ArrayList<Purchase>();
 		
@@ -45,11 +40,6 @@ public class PurchaseController {
 			purchaseList = purchaseService.getPurchasesByDate(pcdate);
 		
 		model.addAttribute("purchaseList", purchaseList);
-		
-		for(Purchase p: purchaseList) {
-			System.out.println(p.getStatus());
-			System.out.println(p.getItems());
-		}
 		
 		return "report";
 	}

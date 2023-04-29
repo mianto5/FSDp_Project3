@@ -23,9 +23,6 @@ public class AdminLoginService {
 		return this.adminRepo.save(adminLogin);
 	}
 	
-	// validate login
-	
-	
 	public String changePassword(String old, String new1, String new2) {
 		String oldDB = getAdminLoginByUsername("admin").getPassword();
 		if(old.isBlank() || new1.isBlank() || new2.isBlank())

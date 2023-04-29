@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.SportyShoes.dto.UserDTO;
-import com.SportyShoes.entity.Purchase;
 import com.SportyShoes.service.UserDTOService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,8 +29,6 @@ public class UserController {
 		
 		String email = request.getParameter("email");
 		String lname = request.getParameter("lname");
-		System.out.println(email);
-		System.out.println(lname);
 		
 		List<UserDTO> userList = new ArrayList<UserDTO>();
 		
