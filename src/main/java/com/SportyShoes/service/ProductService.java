@@ -46,5 +46,9 @@ public class ProductService {
 	public Product getProductById(String pid) {
 		return this.productRepo.findById(pid).orElseThrow(()-> new EntityNotFoundException(pid+ " does not exist"));
 	}
+	
+	public List<Product> getProductByStatus(String status){
+		return this.productRepo.findByStatus(status);
+	}
 
 }

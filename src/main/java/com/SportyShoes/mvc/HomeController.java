@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.SportyShoes.service.AdminLoginService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -48,7 +49,11 @@ public class HomeController {
 	}
 	
 	@PostMapping("/login")
-	public String loginP(HttpServletRequest request, HttpSession session){
+	public String loginP(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+		response.setHeader("Pragma", "no-cache");//http1.0
+		response.setHeader("Pragma", "0");//proxies
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		try {

@@ -22,6 +22,7 @@ public class Product {
 	private int price;
 	private String sport;
 	private String sex;
+	private String status;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pid")	
@@ -32,12 +33,13 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String name, int price, String sport, String sex) {
+	public Product(String name, int price, String sport, String sex, String status) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.sport = sport;
 		this.sex = sex;
+		this.status = status;
 	}
 
 	public int getPid() {
@@ -78,6 +80,14 @@ public class Product {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public List<PurchasedItems> getItems() {

@@ -27,7 +27,7 @@ public class ProductController {
 	public String listProducts(Model model) {
 		System.out.println("products page");
 		
-		List<Product> productList = productService.getAllProducts();
+		List<Product> productList = productService.getProductByStatus("active");
 		model.addAttribute("productList", productList);
 		
 		return "products";
@@ -49,7 +49,7 @@ public class ProductController {
 			return "redirect:addProduct";
 		}
 		
-		Product p = new Product(name, Integer.parseInt(price), sport, sex);
+		Product p = new Product(name, Integer.parseInt(price), sport, sex, "active");
 		try {
 			productService.insertProduct(p);
 		} catch (Exception e) {
@@ -63,8 +63,11 @@ public class ProductController {
 	public String deleteProductGet(HttpServletRequest request) {
 		String pid = request.getParameter("pid");
 		System.out.println("Pid: "+pid);
+		
+		Product p = productService.getProductById(pid);
+		p.setStatus("archived");
 		try {
-			productService.deleteProductById(pid);
+			productService.updateProduct(p);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
